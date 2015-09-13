@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.mathias.odesolver.FrmNumSolving">
+
+    <EditText android:id="@+id/Function"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/Function"
+        android:layout_marginBottom="36dp" />
+
+    <EditText android:id="@+id/StepSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/inputStepSize"
+        android:layout_below="@+id/Function"
+    />
+
+    <EditText android:id="@+id/initalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/initalValue"
+        android:layout_below="@+id/StepSize"
+    />
+
+    <EditText android:id="@+id/leftBound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/leftBound"
+        android:layout_below="@+id/initalValue" />
+
+    <EditText android:id="@+id/rightBound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/rightBound"
+        android:layout_below="@+id/leftBound" />
+
+    <EditText android:id="@+id/solverChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/solverChoose"
+        android:layout_below="@+id/rightBound"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/startNumSolving"
+        android:id="@+id/button_startNumSolving"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="startNumSolving"/>
+
+
+</RelativeLayout>
