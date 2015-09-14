@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/inputStepSize"
         android:layout_below="@+id/Function"
+        android:inputType="number"
     />
 
     <EditText android:id="@+id/initalValue"
@@ -24,30 +25,30 @@
         android:layout_height="wrap_content"
         android:hint="@string/initalValue"
         android:layout_below="@+id/StepSize"
+        android:inputType="numberDecimal"
     />
 
     <EditText android:id="@+id/leftBound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/leftBound"
-        android:layout_below="@+id/initalValue" />
+        android:layout_below="@+id/initalValue"
+        android:inputType="numberDecimal"
+        />
 
     <EditText android:id="@+id/rightBound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/rightBound"
-        android:layout_below="@+id/leftBound" />
+        android:layout_below="@+id/leftBound"
+        android:inputType="numberDecimal"/>
 
-    <EditText android:id="@+id/solverChoose"
+    <EditText android:id="@+id/No_Steps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/solverChoose"
+        android:hint="@string/numberofsteps"
         android:layout_below="@+id/rightBound"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="36dp"
-        android:layout_marginEnd="36dp" />
+        android:inputType="number"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -60,6 +61,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="startNumSolving"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseSolver"
+        android:choiceMode="singleChoice"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/leftBound"
+        android:layout_alignBottom="@+id/rightBound" />
 
 
 </RelativeLayout>
