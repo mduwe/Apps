@@ -14,4 +14,7 @@
     <string name="numberofsteps">#Steps</string>
     <string name="title_activity_frm_num_solving">Numerical Solving of ODE</string>
     <string name="title_activity_frm_sym_solving">Symbolical Solving of ODE</string>
+    <string name="title_activity_insert_function">insertFunction</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

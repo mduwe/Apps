@@ -190,11 +190,12 @@ public class FrmNumSolving extends AppCompatActivity {
 
     private void setSolverList(){
         //create solverlist and match
-     ListView lv = (ListView)findViewById(R.id.chooseSolver);
-     ArrayAdapter<String> solverListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
-     solverListAdapter.add("Euler");
-     solverListAdapter.add("RungeKutta");
-     lv.setAdapter(solverListAdapter);
+        ListView lv = (ListView)findViewById(R.id.chooseSolver);
+        ArrayAdapter<String> solverListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+        solverListAdapter.add("Expl.Euler");
+        solverListAdapter.add("Impl.Euler");
+        solverListAdapter.add("RungeKutta");
+         lv.setAdapter(solverListAdapter);
      }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
