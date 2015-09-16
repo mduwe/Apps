@@ -11,6 +11,11 @@
     <string name="Function">Function</string>
     <string name="startNumSolving">start solving</string>
     <string name="action_settings">Settings</string>
+    <string name="numberofsteps">#Steps</string>
     <string name="title_activity_frm_num_solving">Numerical Solving of ODE</string>
     <string name="title_activity_frm_sym_solving">Symbolical Solving of ODE</string>
+    <string name="title_activity_insert_function">insertFunction</string>
+    <string name="plausibiltyLeftRightBound">Right bound can not be greater or equal than the left bound. Please correct</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
