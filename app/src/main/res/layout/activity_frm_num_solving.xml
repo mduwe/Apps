@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/inputStepSize"
         android:layout_below="@+id/Function"
-        android:inputType="number"
+        android:inputType="numberDecimal"
     />
 
     <EditText android:id="@+id/initalValue"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/initalValue"
         android:layout_below="@+id/StepSize"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
     />
 
     <EditText android:id="@+id/leftBound"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/leftBound"
         android:layout_below="@+id/initalValue"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
         />
 
     <EditText android:id="@+id/rightBound"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/rightBound"
         android:layout_below="@+id/leftBound"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberSigned|numberDecimal"/>
 
     <EditText android:id="@+id/No_Steps"
         android:layout_width="wrap_content"

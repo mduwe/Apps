@@ -15,6 +15,7 @@
     <string name="title_activity_frm_num_solving">Numerical Solving of ODE</string>
     <string name="title_activity_frm_sym_solving">Symbolical Solving of ODE</string>
     <string name="title_activity_insert_function">insertFunction</string>
+    <string name="plausibiltyLeftRightBound">Right bound can not be greater or equal than the left bound. Please correct</string>
 
     <string name="hello_world">Hello world!</string>
 </resources>
