@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/explEuler"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/explEuler"/>
+    <item
+        android:id="@+id/implEuler"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/implEuler"/>
+    <item
+        android:id="@+id/RungeKutta"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/rungeKutta" />
+
+</menu>

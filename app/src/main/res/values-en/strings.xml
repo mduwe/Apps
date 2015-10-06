@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ODESolver</string>
+    <string name="action_settings">Settings</string>
+    <string name="functionString">Function</string>
+    <string name="leftBoundString">Left bound</string>
+    <string name="numSolveString">Numerical solving of ODE</string>
+    <string name="numberOfStepsString">#Steps</string>
+    <string name="rightBoundString">Right bound</string>
+    <string name="stepSizeString">Stepsize</string>
+    <string name="symSolveString">Symbolical solving of ODE</string>
+    <string name="initialValueString">initial value</string>
+    <string name="shareString">Share</string>
+</resources>

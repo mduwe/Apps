@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DGL Löser</string>
+    <string name="action_settings">Optionen</string>
+    <string name="functionString">Funktion</string>
+    <string name="leftBoundString">Linke Grenze</string>
+    <string name="numSolveString">Numerisches Lösen der DGL</string>
+    <string name="numberOfStepsString">#Schritte</string>
+    <string name="rightBoundString">Rechte Grenze</string>
+    <string name="stepSizeString">Schrittweite</string>
+    <string name="symSolveString">Symbolisches Lösen der DGL</string>
+    <string name="initialValueString">Anfangswert</string>
+    <string name="shareString">Teilen</string>
+</resources>
