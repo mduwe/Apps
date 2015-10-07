@@ -9,9 +9,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.mathupyourlife.odesolver.numSolve">
 
+
     <android.support.design.widget.FloatingActionButton android:id="@+id/startNumSolvingButton"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right" android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|right|end" android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_media_play"
         android:clickable="true" />
 
@@ -20,12 +21,12 @@
         android:layout_gravity="bottom|right|end" android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_menu_edit"
         android:clickable="true" />
+    <!--
+      <android.support.design.widget.FloatingActionButton android:id="@+id/makeNewNumSolve"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:layout_gravity="bottom|right|end" android:layout_margin="@dimen/fab_margin"
+          android:src="@android:drawable/ic_menu_add"
+          android:clickable="true" />
+  -->
 
-    <android.support.design.widget.FloatingActionButton android:id="@+id/makeNewNumSolve"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_add"
-        android:clickable="true" />
-
-
-</LinearLayout>
+  </LinearLayout>

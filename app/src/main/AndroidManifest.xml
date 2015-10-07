@@ -33,6 +33,11 @@
             android:label="@string/title_activity_inputs_num_solve"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".numSolveAfterEdit"
+            android:label="@string/title_activity_num_solve_after_edit"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

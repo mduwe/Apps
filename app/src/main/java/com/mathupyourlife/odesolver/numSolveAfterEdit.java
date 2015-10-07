@@ -3,9 +3,8 @@ package com.mathupyourlife.odesolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,23 +12,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class numSolve extends AppCompatActivity
+import org.w3c.dom.Text;
+
+public class numSolveAfterEdit extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private int _numberOfSteps;
-    private int _solverID;
+    private String _solverID;
     private double _stepSize;
     private double _leftBound;
     private double _rightBound;
     private double _initialValue;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_num_solve);
+        setContentView(R.layout.activity_num_solve_after_edit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -37,7 +41,7 @@ public class numSolve extends AppCompatActivity
         solvingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mediator mediator = new Mediator("Please make some inputs first");
+                Mediator mediator = new Mediator("hier sollte das Lösen starten");
                 mediator.showToasterMessage(getApplicationContext(), Toast.LENGTH_SHORT);
             }
         });
@@ -59,6 +63,24 @@ public class numSolve extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Intent editIntent = getIntent();
+
+        TextView steps = (TextView) findViewById(R.id.stepSizeInfo);
+        TextView leftBound = (TextView)findViewById(R.id.leftBoundInfo);
+        TextView rightBound = (TextView)findViewById(R.id.rightBoundInfo);
+        TextView initialValue = (TextView)findViewById(R.id.initialValueInfo);
+        TextView numberOfSteps = (TextView)findViewById(R.id.numerOfStepsInfo);
+        TextView solver = (TextView)findViewById(R.id.solverInfo);
+
+
+        steps.setText(editIntent.getStringExtra("stepSize"));
+        numberOfSteps.setText(editIntent.getStringExtra("numberOfSteps"));
+        leftBound.setText(editIntent.getStringExtra("leftBound"));
+        rightBound.setText(editIntent.getStringExtra("rightBound"));
+        initialValue.setText(editIntent.getStringExtra("initialValue"));
+        solver.setText(editIntent.getStringExtra("solver"));
+
     }
 
     @Override
@@ -71,13 +93,12 @@ public class numSolve extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+  /*  public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.num_solve, menu);
+        getMenuInflater().inflate(R.menu.num_solve_after_edit, menu);
         return true;
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -129,5 +150,6 @@ public class numSolve extends AppCompatActivity
         Intent intent = new Intent(this, symSolve.class);
         startActivity(intent);
     }
+
 
 }

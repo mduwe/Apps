@@ -23,4 +23,5 @@
     <string name="title_activity_num_solve">numSolve</string>
     <string name="title_activity_sym_solve">symSolve</string>
     <string name="title_activity_inputs_num_solve">inputs_num_solve</string>
+    <string name="title_activity_num_solve_after_edit">numSolveAfterEdit</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.mathupyourlife.odesolver;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -39,15 +40,64 @@ public class inputs_num_solve extends AppCompatActivity {
         _solver = String.valueOf(solverButton.getText());
     }
     public void closeAndSafe(){
-
         //save instance etc.
-        if(chkAndGetInputs()){
-            //handle inputs and give it to numSolve
+
+        if(chkInputs()){
+            Intent numSolveActivity = new Intent(getApplicationContext(), numSolveAfterEdit.class);
+
+            //give parameters to numSolve
+            numSolveActivity.putExtra("numberOfSteps", String.valueOf(getNumberOfSteps()));
+            numSolveActivity.putExtra("stepSize", String.valueOf(getStepSize()));
+            numSolveActivity.putExtra("leftBound", String.valueOf(getLeftBound()));
+            numSolveActivity.putExtra("rightBound", String.valueOf(getRightBound()));
+            numSolveActivity.putExtra("initialValue", String.valueOf(getInitialValue()));
+            numSolveActivity.putExtra("solver", getSolver());
+            //Start numSolve Activity
+
+            startActivity(numSolveActivity);
         }
 
     }
+    private String getSolver(){
+        Button solverButton = (Button) findViewById(R.id.solverButton);
+        return solverButton.getText().toString();
+    }
 
-    private Boolean chkAndGetInputs(){
+    private double getStepSize(){
+        EditText steps = (EditText) findViewById(R.id.StepSize);
+        return Double.valueOf(steps.getText().toString());
+    }
+    private void setStepSize(int _stepSize){
+        EditText steps = (EditText)findViewById(R.id.StepSize);
+        steps.setText(String.valueOf(_stepSize));
+    }
+
+    private double getLeftBound(){
+        EditText leftBound = (EditText)findViewById(R.id.leftBound);
+        return Double.parseDouble(leftBound.getText().toString());
+    }
+
+    private double getRightBound(){
+        EditText rightBound = (EditText)findViewById(R.id.rightBound);
+        return Double.parseDouble(rightBound.getText().toString());
+    }
+
+    private double getInitialValue(){
+        EditText initialValue = (EditText)findViewById(R.id.initalValue);
+        return Double.valueOf(initialValue.getText().toString());
+    }
+
+    private int getNumberOfSteps(){
+        EditText numberOfSteps = (EditText)findViewById(R.id.No_Steps);
+        return Integer.parseInt(numberOfSteps.getText().toString());
+    }
+
+    private void setNumberOfSteps(int _numberOfSteps){
+        EditText numberOfSteps = (EditText)findViewById(R.id.No_Steps);
+        numberOfSteps.setText(String.valueOf(_numberOfSteps));
+    }
+
+    public Boolean chkInputs(){
         //plausibilty check and check wheather all inputs are made
         //if all inputs are OK -> save the inputs
         EditText stepSizeText = (EditText) findViewById(R.id.StepSize);
