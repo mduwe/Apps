@@ -45,9 +45,9 @@ public class solver{
 
         if(solverID != 0){
             switch(solverID){
-                case 1: solved = this.startNumSolvingWithExplEuler();
-                case 2: solved = this.startNumSolvingWithImplEuler();
-                case 3: solved = this.startNumSolvingWithRungeKutta();
+                case 1: solved = this.startNumSolvingWithExplEuler(); break;
+                case 2: solved = this.startNumSolvingWithImplEuler(); break;
+                case 3: solved = this.startNumSolvingWithRungeKutta(); break;
             }
 
         }
@@ -62,9 +62,33 @@ public class solver{
         }
         return 0;
     }
-    //Start the solving with explicit euler
-    // u(i+1) = u(i) + h f(xi,ui)
+
     private boolean startNumSolvingWithExplEuler(){
+        //Start the solving with explicit euler
+        // u(i+1) = u(i) + h f(xi,ui)
+        this.data = new double[this._numberOfSteps][2];
+        double h = this._stepSize;
+
+        double x = this._leftBound;
+        double y = this._initialValue;
+
+        data[0][0] = x;
+        data[0][1] = y;
+        for(int i = 0; i < this._numberOfSteps-1 ; i++){
+            if(x > this._rightBound){
+                //we are out of bounds due to roundings or something else, Break and return;
+                break;
+            }
+                //save data
+                data[i][0] = x;
+                data[i][1] = y;
+
+                y = y + h * f(x,y);
+                //next
+                x = x + h;
+        }
+        data[this._numberOfSteps-1][0] = x;
+        data[this._numberOfSteps-1][1] = y;
 
         return true;
     }
@@ -87,20 +111,22 @@ public class solver{
         data[0][0] = x;
         data[0][1] = y;
         for(int i = 0; i < this._numberOfSteps-1 ; i++){
-            if(x <= this._rightBound){
-                //save data
-                data[i][0] = x;
-                data[i][1] = y;
-
-                k1 = f(x,y);
-                k2 = f(x + 0.5*h, y + 0.5*k1);
-                k3 = f(x + h, y - h*k1 +2.*h*k2);
-
-                y = y + (1./6.)*h*(k1 + 4.*k2 + k3);
-
-                //next
-                x = x + h;
+            if(x > this._rightBound){
+                //we are out of bounds due to roundings or something else, Break and return;
+                break;
             }
+             //save data
+            data[i][0] = x;
+            data[i][1] = y;
+
+            k1 = f(x,y);
+            k2 = f(x + 0.5*h, y + 0.5*k1);
+            k3 = f(x + h, y - h*k1 +2.*h*k2);
+
+            y = y + (1./6.)*h*(k1 + 4.*k2 + k3);
+
+            //next
+            x = x + h;
         }
         data[this._numberOfSteps-1][0] = x;
         data[this._numberOfSteps-1][1] = y;
@@ -110,7 +136,7 @@ public class solver{
 
     private double f(double x, double y){
 
-        return x+y;
+        return y;
     }
 
 

@@ -187,8 +187,12 @@ public class numSolveAfterEdit extends AppCompatActivity
            success = numericalSolver.startSolving();
            this.data = numericalSolver.data;
 
-           Mediator mediator = new Mediator(valueOf(this.data[1][1]));
-           mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+          Mediator mediator = new Mediator(valueOf(this.data[this.data.length-1][0]));
+          Mediator medi = new Mediator(valueOf(this.data[this.data.length-1][1]));
+
+          mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+          medi.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+
 
 
            return success;
