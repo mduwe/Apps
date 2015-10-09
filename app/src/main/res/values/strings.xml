@@ -18,7 +18,7 @@
     <string name="leftBoundString">Left bound</string>
     <string name="rightBoundString">Right bound</string>
     <string name="numberOfStepsString">#Steps</string>
-    <string name="functionString">Function</string>
+    <string name="ODEString">ODE</string>
     <string name="initialValueString">initial value</string>
     <string name="title_activity_num_solve">numSolve</string>
     <string name="title_activity_sym_solve">symSolve</string>

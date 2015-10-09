@@ -41,7 +41,6 @@ public class inputs_num_solve extends AppCompatActivity {
     }
     public void closeAndSafe(){
         //save instance etc.
-
         if(chkInputs()){
             Intent numSolveActivity = new Intent(getApplicationContext(), numSolveAfterEdit.class);
 
@@ -52,10 +51,17 @@ public class inputs_num_solve extends AppCompatActivity {
             numSolveActivity.putExtra("rightBound", String.valueOf(getRightBound()));
             numSolveActivity.putExtra("initialValue", String.valueOf(getInitialValue()));
             numSolveActivity.putExtra("solver", getSolver());
-            //Start numSolve Activity
+            numSolveActivity.putExtra("ODE", getODE());
 
+            //Start numSolve Activity
             startActivity(numSolveActivity);
         }
+
+    }
+
+    private String getODE(){
+        EditText ODEText = (EditText)findViewById(R.id.ODE);
+        return ODEText.getText().toString();
 
     }
     private String getSolver(){
@@ -108,12 +114,13 @@ public class inputs_num_solve extends AppCompatActivity {
         Button solverButton = (Button)findViewById(R.id.solverButton);
         String none = "";
         //check inputs made
+
         if(stepSizeText.getText().toString().equals(none)
                 || leftBoundText.getText().toString().equals(none)
                 || rightBoundText.getText().toString().equals(none)
                 || initialValueText.getText().toString().equals(none)
                 || numberOfStepsText.getText().toString().equals(none)
-                || solverButton.getText() == "Solver") {
+                || solverButton.getText().equals("Solver")) {
 
             Mediator mediator = new Mediator();
             Vector<String> missingParams = new Vector<String>(0);
@@ -133,7 +140,7 @@ public class inputs_num_solve extends AppCompatActivity {
             if (numberOfStepsText.getText().toString().equals(none)) {
                 missingParams.add(numberOfStepsText.getHint().toString());
             }
-            if (solverButton.getText() == "Solver") {
+            if (solverButton.getText().equals("Solver")) {
                 missingParams.add("Solver");
             }
             mediator._message = "Missing the following params:";

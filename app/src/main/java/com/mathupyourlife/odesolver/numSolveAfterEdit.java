@@ -20,15 +20,16 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
+
+
 public class numSolveAfterEdit extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private int _numberOfSteps;
-    private String _solverID;
-    private double _stepSize;
-    private double _leftBound;
-    private double _rightBound;
-    private double _initialValue;
+   private double[][] data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,12 @@ public class numSolveAfterEdit extends AppCompatActivity
         solvingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Mediator mediator = new Mediator("hier sollte das Lösen starten");
-                mediator.showToasterMessage(getApplicationContext(), Toast.LENGTH_SHORT);
+              if(startNumSolving()){
+/*
+                  Mediator mediator = new Mediator("success");
+                  mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_SHORT);
+*/
+              }
             }
         });
 
@@ -72,6 +77,7 @@ public class numSolveAfterEdit extends AppCompatActivity
         TextView initialValue = (TextView)findViewById(R.id.initialValueInfo);
         TextView numberOfSteps = (TextView)findViewById(R.id.numerOfStepsInfo);
         TextView solver = (TextView)findViewById(R.id.solverInfo);
+        TextView ODE = (TextView)findViewById(R.id.functionInfo);
 
 
         steps.setText(editIntent.getStringExtra("stepSize"));
@@ -80,6 +86,7 @@ public class numSolveAfterEdit extends AppCompatActivity
         rightBound.setText(editIntent.getStringExtra("rightBound"));
         initialValue.setText(editIntent.getStringExtra("initialValue"));
         solver.setText(editIntent.getStringExtra("solver"));
+        ODE.setText(editIntent.getStringExtra("ODE"));
 
     }
 
@@ -151,5 +158,40 @@ public class numSolveAfterEdit extends AppCompatActivity
         startActivity(intent);
     }
 
+       private boolean startNumSolving(){
+        //initialize all components
+
+        TextView steps = (TextView) findViewById(R.id.stepSizeInfo);
+        TextView leftBound = (TextView)findViewById(R.id.leftBoundInfo);
+        TextView rightBound = (TextView)findViewById(R.id.rightBoundInfo);
+        TextView initialValue = (TextView)findViewById(R.id.initialValueInfo);
+        TextView numberOfSteps = (TextView)findViewById(R.id.numerOfStepsInfo);
+        TextView solver = (TextView)findViewById(R.id.solverInfo);
+        TextView ODE = (TextView)findViewById(R.id.functionInfo);
+
+        //get all values
+        double _leftBound = parseDouble(leftBound.getText().toString());
+        double _rightBound = parseDouble(rightBound.getText().toString());
+        double _stepSize = parseDouble(steps.getText().toString());
+        int _numberOfSteps = parseInt(numberOfSteps.getText().toString());
+        double _initialValue = parseDouble(initialValue.getText().toString());
+        String _ODE = ODE.getText().toString();
+        String _solver = solver.getText().toString();
+
+           boolean success;
+
+           //start solving
+           solver numericalSolver = new solver(_stepSize ,_leftBound, _rightBound,
+                                        _initialValue,_numberOfSteps, _ODE, _solver);
+
+           success = numericalSolver.startSolving();
+           this.data = numericalSolver.data;
+
+           Mediator mediator = new Mediator(valueOf(this.data[1][1]));
+           mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+
+
+           return success;
+    }
 
 }

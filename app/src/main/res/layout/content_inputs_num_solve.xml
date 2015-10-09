@@ -10,17 +10,17 @@
     tools:showIn="@layout/activity_inputs_num_solve"
     tools:context="com.mathupyourlife.odesolver.inputs_num_solve">
 
-        <EditText android:id="@+id/Function"
+        <EditText android:id="@+id/ODE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/functionString"
+            android:hint="@string/ODEString"
             android:layout_marginBottom="36dp" />
 
         <EditText android:id="@+id/StepSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/stepSizeString"
-            android:layout_below="@+id/Function"
+            android:layout_below="@+id/ODE"
             android:inputType="numberDecimal"
             />
 

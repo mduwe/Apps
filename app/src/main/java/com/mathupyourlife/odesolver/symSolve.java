@@ -108,7 +108,7 @@ public class symSolve extends AppCompatActivity
     }
 
     public void showFrmNumSolve(){
-        Intent intent = new Intent(this, symSolve.class);
+        Intent intent = new Intent(this, numSolve.class);
         startActivity(intent);
     }
 }
