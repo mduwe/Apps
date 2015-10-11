@@ -28,31 +28,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/initialValueString"
-            android:layout_below="@+id/StepSize"
             android:inputType="numberSigned|numberDecimal"
-            />
+            android:layout_alignTop="@+id/rightBound"
+            android:layout_alignParentEnd="true" />
 
         <EditText android:id="@+id/leftBound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/leftBoundString"
-            android:layout_below="@+id/initalValue"
             android:inputType="numberSigned|numberDecimal"
-            />
+            android:layout_above="@+id/StepSize"
+            android:layout_alignParentStart="true" />
 
         <EditText android:id="@+id/rightBound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/rightBoundString"
-            android:layout_below="@+id/leftBound"
-            android:inputType="numberSigned|numberDecimal"/>
+            android:inputType="numberSigned|numberDecimal"
+            android:layout_alignTop="@+id/leftBound"
+            android:layout_centerHorizontal="true" />
 
         <EditText android:id="@+id/No_Steps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/numberOfStepsString"
-            android:layout_below="@+id/rightBound"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:layout_below="@+id/initalValue"
+            android:layout_alignEnd="@+id/initalValue" />
 
     <Button
         android:layout_width="wrap_content"

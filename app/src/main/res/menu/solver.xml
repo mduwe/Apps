@@ -5,10 +5,12 @@
         android:id="@+id/explEuler"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/explEuler"/>
-    <item
+ <!--
+           <item
         android:id="@+id/implEuler"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/implEuler"/>
+ -->
     <item
         android:id="@+id/RungeKutta"
         android:icon="@android:drawable/ic_menu_edit"

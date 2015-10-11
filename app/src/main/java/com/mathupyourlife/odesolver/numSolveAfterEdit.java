@@ -75,7 +75,7 @@ public class numSolveAfterEdit extends AppCompatActivity
         TextView leftBound = (TextView)findViewById(R.id.leftBoundInfo);
         TextView rightBound = (TextView)findViewById(R.id.rightBoundInfo);
         TextView initialValue = (TextView)findViewById(R.id.initialValueInfo);
-        TextView numberOfSteps = (TextView)findViewById(R.id.numerOfStepsInfo);
+        TextView numberOfSteps = (TextView)findViewById(R.id.numberOfStepsInfo);
         TextView solver = (TextView)findViewById(R.id.solverInfo);
         TextView ODE = (TextView)findViewById(R.id.functionInfo);
 
@@ -165,37 +165,35 @@ public class numSolveAfterEdit extends AppCompatActivity
         TextView leftBound = (TextView)findViewById(R.id.leftBoundInfo);
         TextView rightBound = (TextView)findViewById(R.id.rightBoundInfo);
         TextView initialValue = (TextView)findViewById(R.id.initialValueInfo);
-        TextView numberOfSteps = (TextView)findViewById(R.id.numerOfStepsInfo);
+        TextView numberOfSteps = (TextView)findViewById(R.id.numberOfStepsInfo);
         TextView solver = (TextView)findViewById(R.id.solverInfo);
         TextView ODE = (TextView)findViewById(R.id.functionInfo);
 
         //get all values
-        double _leftBound = parseDouble(leftBound.getText().toString());
-        double _rightBound = parseDouble(rightBound.getText().toString());
-        double _stepSize = parseDouble(steps.getText().toString());
-        int _numberOfSteps = parseInt(numberOfSteps.getText().toString());
-        double _initialValue = parseDouble(initialValue.getText().toString());
-        String _ODE = ODE.getText().toString();
+        double _leftBound = parseDouble(leftBound.getText().toString().trim());
+        double _rightBound = parseDouble(rightBound.getText().toString().trim());
+        double _stepSize = parseDouble(steps.getText().toString().trim());
+        int _numberOfSteps = parseInt(numberOfSteps.getText().toString().trim());
+        double _initialValue = parseDouble(initialValue.getText().toString().trim());
+        String _ODE = ODE.getText().toString().trim();
         String _solver = solver.getText().toString();
 
-           boolean success;
+       boolean success;
 
-           //start solving
-           solver numericalSolver = new solver(_stepSize ,_leftBound, _rightBound,
-                                        _initialValue,_numberOfSteps, _ODE, _solver);
+       //start solving
+       solver numericalSolver = new solver(_stepSize ,_leftBound, _rightBound,
+                                    _initialValue,_numberOfSteps, _ODE, _solver);
 
-           success = numericalSolver.startSolving();
-           this.data = numericalSolver.data;
+       success = numericalSolver.startSolving();
+       this.data = numericalSolver.data;
 
-          Mediator mediator = new Mediator(valueOf(this.data[this.data.length-1][0]));
-          Mediator medi = new Mediator(valueOf(this.data[this.data.length-1][1]));
+       Mediator mediator = new Mediator(valueOf(this.data[this.data.length-1][0]));
+       Mediator medi = new Mediator(valueOf(this.data[this.data.length-1][1]));
 
-          mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
-          medi.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+       mediator.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
+       medi.showToasterMessage(getApplicationContext(),Toast.LENGTH_LONG);
 
-
-
-           return success;
+       return success;
     }
 
 }

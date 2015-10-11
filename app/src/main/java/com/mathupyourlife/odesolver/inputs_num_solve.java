@@ -24,21 +24,6 @@ public class inputs_num_solve extends AppCompatActivity {
     public double _rightBound;
     public double _initialValue;
 
-    private void getInputs(){
-        EditText steps = (EditText) findViewById(R.id.StepSize);
-        EditText leftBound = (EditText)findViewById(R.id.leftBound);
-        EditText rightBound = (EditText)findViewById(R.id.rightBound);
-        EditText initialValue = (EditText)findViewById(R.id.initalValue);
-        EditText numberOfSteps = (EditText)findViewById(R.id.No_Steps);
-        Button solverButton = (Button) findViewById(R.id.solverButton);
-
-        _numberOfSteps = Integer.parseInt(numberOfSteps.getText().toString());
-        _stepSize = Double.valueOf(steps.getText().toString());
-        _leftBound = Double.parseDouble(leftBound.getText().toString());
-        _rightBound = Double.parseDouble(rightBound.getText().toString());
-        _initialValue = Double.valueOf(initialValue.getText().toString());
-        _solver = String.valueOf(solverButton.getText());
-    }
     public void closeAndSafe(){
         //save instance etc.
         if(chkInputs()){
@@ -106,6 +91,7 @@ public class inputs_num_solve extends AppCompatActivity {
     public Boolean chkInputs(){
         //plausibilty check and check wheather all inputs are made
         //if all inputs are OK -> save the inputs
+        EditText ODEText = (EditText)findViewById(R.id.ODE);
         EditText stepSizeText = (EditText) findViewById(R.id.StepSize);
         EditText leftBoundText = (EditText)findViewById(R.id.leftBound);
         EditText rightBoundText = (EditText)findViewById(R.id.rightBound);
@@ -115,7 +101,8 @@ public class inputs_num_solve extends AppCompatActivity {
         String none = "";
         //check inputs made
 
-        if(stepSizeText.getText().toString().equals(none)
+        if(ODEText.getText().toString().equals(none)
+                || stepSizeText.getText().toString().equals(none)
                 || leftBoundText.getText().toString().equals(none)
                 || rightBoundText.getText().toString().equals(none)
                 || initialValueText.getText().toString().equals(none)
@@ -125,6 +112,9 @@ public class inputs_num_solve extends AppCompatActivity {
             Mediator mediator = new Mediator();
             Vector<String> missingParams = new Vector<String>(0);
 
+            if(ODEText.getText().toString().equals(none)){
+                missingParams.add(ODEText.getHint().toString());
+            }
             if (stepSizeText.getText().toString().equals(none)) {
                 missingParams.add(stepSizeText.getHint().toString());
             }
@@ -149,11 +139,29 @@ public class inputs_num_solve extends AppCompatActivity {
         }
         //Plausibility check, e. g. left bound<right bound
         if(Double.valueOf(leftBoundText.getText().toString()) >= Double.valueOf(rightBoundText.getText().toString())){
-            Mediator mediator = new Mediator();
-            Vector<String> messageContainer = new Vector<String>(0);
+            Mediator mediator = new Mediator("Left bound cannot be greater or equal than right Bound, please correct");
+            mediator.showToasterMessage(getApplicationContext(), Toast.LENGTH_SHORT);
+            return false;
+        }
+        //Plausibility check: number of brackets open must be equal number of brackets close
+        int numberBracketsOpen = 0, numberBracketsClose = 0;
+        for (int i = 0; i<ODEText.getText().toString().length(); i++){
 
-            mediator._message = "Left bound cannot be greater or equal than right Bound, please correct";
-            mediator.showToasterMessage(messageContainer, getApplicationContext(), Toast.LENGTH_SHORT);
+            if(ODEText.getText().toString().charAt(i) == '('){
+                numberBracketsOpen++;
+            }
+            else if(ODEText.getText().toString().charAt(i) == ')'){
+                numberBracketsClose++;
+            }
+        }
+        if(numberBracketsOpen < numberBracketsClose){
+            Mediator mediator = new Mediator("missing '(' in ODE");
+            mediator.showToasterMessage(getApplicationContext(), Toast.LENGTH_SHORT);
+            return false;
+        }
+        else if(numberBracketsOpen > numberBracketsClose) {
+            Mediator mediator = new Mediator("missing ')' in ODE");
+            mediator.showToasterMessage(getApplicationContext(), Toast.LENGTH_SHORT);
             return false;
         }
 
@@ -174,14 +182,14 @@ public class inputs_num_solve extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton camIcon = (FloatingActionButton) findViewById(R.id.cameraIcon);
+    /*    FloatingActionButton camIcon = (FloatingActionButton) findViewById(R.id.cameraIcon);
         camIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-
+*/
         FloatingActionButton saveChangesButton = (FloatingActionButton) findViewById(R.id.closeInputs);
         saveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override

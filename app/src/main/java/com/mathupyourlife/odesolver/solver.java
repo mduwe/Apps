@@ -1,5 +1,7 @@
 package com.mathupyourlife.odesolver;
 
+import android.provider.ContactsContract;
+
 /**
  * Created by mathias on 09.10.15.
  */
@@ -11,13 +13,12 @@ public class solver{
     private double _rightBound;
     private double _initialValue;
 
-    private String _ODE;
+    public String _ODE;
     private String _solver;
 
     public double[][] data;
     public int solverID;
-    //Methods
-
+    private functionParser parser;
     //constructor, its necessary that all inputs are made
 
     solver(double stepSize, double leftBound, double rightBound,
@@ -32,6 +33,8 @@ public class solver{
         _ODE = ODE;
         _solver = solver;
         solverID = getSolverID(_solver);
+        //parser = new functionParser(_ODE);
+
 
         //initalize log
 
@@ -66,30 +69,28 @@ public class solver{
     private boolean startNumSolvingWithExplEuler(){
         //Start the solving with explicit euler
         // u(i+1) = u(i) + h f(xi,ui)
-        this.data = new double[this._numberOfSteps][2];
+        this.data = new double[this._numberOfSteps+1][2];
         double h = this._stepSize;
 
         double x = this._leftBound;
         double y = this._initialValue;
 
-        data[0][0] = x;
-        data[0][1] = y;
-        for(int i = 0; i < this._numberOfSteps-1 ; i++){
-            if(x > this._rightBound){
-                //we are out of bounds due to roundings or something else, Break and return;
-                break;
-            }
-                //save data
-                data[i][0] = x;
-                data[i][1] = y;
+        //save initial value
 
-                y = y + h * f(x,y);
-                //next
-                x = x + h;
+        int i = 0;
+        while((i < this._numberOfSteps) && (x < this._rightBound)){
+
+            data[i][0] = x;
+            data[i][1] = y;
+
+            y = y + h * f(x,y);
+            x = x + h;
+
+            i++;
         }
-        data[this._numberOfSteps-1][0] = x;
-        data[this._numberOfSteps-1][1] = y;
 
+        data[this._numberOfSteps][0] = x;
+        data[this._numberOfSteps][1] = y;
         return true;
     }
 
@@ -101,35 +102,31 @@ public class solver{
     private boolean startNumSolvingWithRungeKutta(){
 
         //implements the 3step rungekutta method
-        double k1,k2,k3;
-        this.data = new double[this._numberOfSteps][2];
+        double k1, k2, k3;
+        this.data = new double[this._numberOfSteps+1][2];
         double h = this._stepSize;
 
         double x = this._leftBound;
         double y = this._initialValue;
 
-        data[0][0] = x;
-        data[0][1] = y;
-        for(int i = 0; i < this._numberOfSteps-1 ; i++){
-            if(x > this._rightBound){
-                //we are out of bounds due to roundings or something else, Break and return;
-                break;
-            }
+        int i = 0;
+        while((i < this._numberOfSteps) && (x < this._rightBound)){
              //save data
             data[i][0] = x;
             data[i][1] = y;
 
             k1 = f(x,y);
-            k2 = f(x + 0.5*h, y + 0.5*k1);
-            k3 = f(x + h, y - h*k1 +2.*h*k2);
+            k2 = f(x + 0.5*h, y + 0.5*h*k1);
+            k3 = f(x + h, y - h*k1 + 2.*h*k2);
 
-            y = y + (1./6.)*h*(k1 + 4.*k2 + k3);
+            y = y + h*(k1 + 4.*k2 + k3)/6.;
 
             //next
             x = x + h;
+            i++;
         }
-        data[this._numberOfSteps-1][0] = x;
-        data[this._numberOfSteps-1][1] = y;
+        data[this._numberOfSteps][0] = x;
+        data[this._numberOfSteps][1] = y;
 
         return true;
     }
@@ -137,7 +134,7 @@ public class solver{
     private double f(double x, double y){
 
         return y;
+       // return parser.evalODE(x,y);
     }
-
 
 }

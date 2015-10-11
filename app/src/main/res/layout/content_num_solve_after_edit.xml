@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -7,89 +6,78 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mathupyourlife.odesolver.numSolveAfterEdit"
-    android:weightSum="1"
-    android:orientation="vertical">
+    tools:showIn="@layout/activity_num_solve_after_edit"
+    tools:context="com.mathupyourlife.odesolver.numSolveAfterEdit">
 
-    <TextView
-        android:layout_width="181dp"
-        android:layout_height="62dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/functionInfo" />
-
-
-
-    <TextView
-        android:layout_width="353dp"
+    <TextView android:id="@+id/functionInfo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/initialValueInfo"
-        android:layout_weight="0.15"
-        android:layout_gravity="right" />
+        android:hint="@string/ODEString"
+        android:layout_marginBottom="36dp" />
+
+    <TextView android:id="@+id/stepSizeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/stepSizeString"
+        android:layout_below="@+id/functionInfo"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:id="@+id/initialValueInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/initialValueString"
+        android:layout_alignTop="@+id/rightBoundInfo"
+        android:layout_alignParentEnd="true" />
+
+    <TextView android:id="@+id/leftBoundInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/leftBoundString"
+        android:layout_above="@+id/stepSizeInfo"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:id="@+id/rightBoundInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/rightBoundString"
+        android:layout_alignTop="@+id/leftBoundInfo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:id="@+id/numberOfStepsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/numberOfStepsString"
+        android:layout_below="@+id/initialValueInfo"
+        android:layout_alignEnd="@+id/initialValueInfo" />
 
     <TextView
-        android:layout_width="271dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
+        android:text="@string/Solver"
         android:id="@+id/solverInfo"
-        android:layout_weight="0.50" />
-
-    <TextView
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/leftBoundInfo"
-        android:layout_weight="0.12" />
-
-    <TextView
-        android:layout_width="106dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/rightBoundInfo"
-        android:layout_weight="0.12" />
-
-    <TextView
-        android:layout_width="82dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/numerOfStepsInfo"
-        android:layout_weight="0.12" />
-
-    <TextView
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="text"
-        android:id="@+id/stepSizeInfo"
-        android:layout_weight="0.12" />
-
-
-
-    <android.support.design.widget.FloatingActionButton android:id="@+id/editInputsButton"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_edit"
-        android:clickable="true" />
+        android:onClick="onSolverButtonClick"
+        android:layout_below="@+id/numberOfStepsInfo"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/leftBoundInfo" />
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/startNumSolvingButton"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom" android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_media_play"
-        android:clickable="true"
-        />
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_menu_call"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="41dp"
+        android:layout_above="@+id/editInputsButton"
+        android:layout_alignEnd="@+id/numberOfStepsInfo" />
 
-    <!--
-    <android.support.design.widget.FloatingActionButton android:id="@+id/makeNewNumSolve"
+    <android.support.design.widget.FloatingActionButton android:id="@+id/editInputsButton"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_add"
-        android:clickable="true" />
--->
+        android:layout_gravity="bottom|left"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/numberOfStepsInfo" />
 
-</LinearLayout>
+
+</RelativeLayout>
