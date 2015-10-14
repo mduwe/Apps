@@ -18,7 +18,6 @@ public class solver{
 
     public double[][] data;
     public int solverID;
-    private functionParser parser;
     //constructor, its necessary that all inputs are made
 
     solver(double stepSize, double leftBound, double rightBound,
@@ -33,9 +32,6 @@ public class solver{
         _ODE = ODE;
         _solver = solver;
         solverID = getSolverID(_solver);
-        //parser = new functionParser(_ODE);
-
-
         //initalize log
 
 
@@ -133,8 +129,20 @@ public class solver{
 
     private double f(double x, double y){
 
-        return y;
-       // return parser.evalODE(x,y);
+        String dummyODE = _ODE;
+        dummyODE = dummyODE.replace("x", String.valueOf(x));
+        dummyODE = dummyODE.replace("y", String.valueOf(y));
+
+        try {
+            mParser p = new mParser(dummyODE);
+            return p.getResult();
+        }
+        catch (Exception e) {
+            return f(x,y);
+           // e.printStackTrace();
+        }
+
+        //rückgabewert streitbar
     }
 
 }
